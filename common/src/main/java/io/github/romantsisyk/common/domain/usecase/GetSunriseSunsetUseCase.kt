@@ -1,8 +1,8 @@
-package io.github.romantsisyk.myapplication.domain.usecase
+package io.github.romantsisyk.common.domain.usecase
 
 import android.util.Log
-import io.github.romantsisyk.myapplication.domain.model.SunriseSunsetTimes
-import io.github.romantsisyk.myapplication.domain.repository.SunriseSunsetRepositoryInterface
+import io.github.romantsisyk.common.domain.model.SunriseSunsetTimes
+import io.github.romantsisyk.common.domain.repository.SunriseSunsetRepositoryInterface
 import io.github.romantsisyk.sunrisesunsetsdk.utils.TimeZoneID
 
 class GetSunriseSunsetUseCase(

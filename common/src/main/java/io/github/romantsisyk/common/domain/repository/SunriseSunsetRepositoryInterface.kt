@@ -1,6 +1,6 @@
-package io.github.romantsisyk.myapplication.domain.repository
+package io.github.romantsisyk.common.domain.repository
 
-import io.github.romantsisyk.myapplication.domain.model.SunriseSunsetTimes
+import io.github.romantsisyk.common.domain.model.SunriseSunsetTimes
 import io.github.romantsisyk.sunrisesunsetsdk.utils.TimeZoneID
 import java.time.LocalDate
 
@@ -12,3 +12,5 @@ interface SunriseSunsetRepositoryInterface {
         timeZone: TimeZoneID? = null
     ): Result<SunriseSunsetTimes>
 }
+
+

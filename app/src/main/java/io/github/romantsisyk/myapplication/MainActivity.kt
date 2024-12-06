@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.hilt.navigation.compose.hiltViewModel
 import io.github.romantsisyk.myapplication.presentation.ui.MainScreen
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.romantsisyk.myapplication.presentation.viewmodel.SunriseSunsetViewModel
+import io.github.romantsisyk.common.presentation.viewmodel.SunriseSunsetViewModel
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

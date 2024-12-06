@@ -1,6 +1,6 @@
-package io.github.romantsisyk.myapplication.presentation
+package io.github.romantsisyk.common.presentation.viewmodel
 
-import io.github.romantsisyk.myapplication.domain.model.SunriseSunsetTimes
+import io.github.romantsisyk.common.domain.model.SunriseSunsetTimes
 
 
 sealed class UiState {

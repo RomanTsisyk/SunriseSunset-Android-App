@@ -1,17 +1,16 @@
-package io.github.romantsisyk.myapplication.presentation.viewmodel
+package io.github.romantsisyk.common.presentation.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.romantsisyk.myapplication.domain.usecase.GetSunriseSunsetUseCase
+import io.github.romantsisyk.common.domain.usecase.GetSunriseSunsetUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewModelScope
-import io.github.romantsisyk.myapplication.core.Constants.DEFAULT_LATITUDE
-import io.github.romantsisyk.myapplication.core.Constants.DEFAULT_LONGITUDE
-import io.github.romantsisyk.myapplication.domain.model.City
-import io.github.romantsisyk.myapplication.presentation.UiState
+import io.github.romantsisyk.common.core.Constants.DEFAULT_LATITUDE
+import io.github.romantsisyk.common.core.Constants.DEFAULT_LONGITUDE
+import io.github.romantsisyk.common.domain.model.City
 import io.github.romantsisyk.sunrisesunsetsdk.utils.TimeZoneID
 import javax.inject.Inject
 

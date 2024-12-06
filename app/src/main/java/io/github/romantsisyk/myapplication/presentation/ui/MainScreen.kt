@@ -21,10 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import io.github.romantsisyk.myapplication.domain.model.City
-import io.github.romantsisyk.myapplication.domain.model.SunriseSunsetTimes
-import io.github.romantsisyk.myapplication.presentation.UiState
-import io.github.romantsisyk.myapplication.presentation.viewmodel.SunriseSunsetViewModel
+import io.github.romantsisyk.common.domain.model.City
+import io.github.romantsisyk.common.domain.model.SunriseSunsetTimes
+import io.github.romantsisyk.common.presentation.viewmodel.UiState
+import io.github.romantsisyk.common.presentation.viewmodel.SunriseSunsetViewModel
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*

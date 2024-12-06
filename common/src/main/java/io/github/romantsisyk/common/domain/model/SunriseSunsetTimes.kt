@@ -1,4 +1,4 @@
-package io.github.romantsisyk.myapplication.domain.model
+package io.github.romantsisyk.common.domain.model
 
 data class SunriseSunsetTimes(
     val sunrise: String,

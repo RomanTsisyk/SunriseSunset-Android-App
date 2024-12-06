@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "My Application"
 include(":app")
- 
+include(":common")
+include(":wear")

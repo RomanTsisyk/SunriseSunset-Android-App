@@ -1,10 +1,10 @@
-package io.github.romantsisyk.myapplication.data.repository
+package io.github.romantsisyk.common.data.repository
 
 import android.util.Log
-import io.github.romantsisyk.myapplication.domain.repository.SunriseSunsetRepositoryInterface
+import io.github.romantsisyk.common.domain.repository.SunriseSunsetRepositoryInterface
 import io.github.romantsisyk.sunrisesunsetsdk.SunriseSunsetSDK
 import io.github.romantsisyk.sunrisesunsetsdk.models.SuccessApiResponse
-import io.github.romantsisyk.myapplication.domain.model.SunriseSunsetTimes
+import io.github.romantsisyk.common.domain.model.SunriseSunsetTimes
 import io.github.romantsisyk.sunrisesunsetsdk.utils.TimeZoneID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

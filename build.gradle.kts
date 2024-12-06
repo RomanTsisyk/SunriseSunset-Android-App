@@ -4,4 +4,5 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     id("com.google.dagger.hilt.android") version "2.51.1" apply false
     id ("org.jetbrains.kotlin.plugin.serialization") version "1.9.0" apply false
+    alias(libs.plugins.android.library) apply false
 }
