@@ -8,10 +8,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewModelScope
-import io.github.romantsisyk.myapplication.core.Constants
 import io.github.romantsisyk.myapplication.core.Constants.DEFAULT_LATITUDE
 import io.github.romantsisyk.myapplication.core.Constants.DEFAULT_LONGITUDE
-import io.github.romantsisyk.myapplication.domain.model.SunriseSunsetTimes
+import io.github.romantsisyk.myapplication.domain.model.City
+import io.github.romantsisyk.myapplication.presentation.UiState
 import io.github.romantsisyk.sunrisesunsetsdk.utils.TimeZoneID
 import javax.inject.Inject
 
@@ -19,42 +19,50 @@ import javax.inject.Inject
 class SunriseSunsetViewModel @Inject constructor(
     private val useCase: GetSunriseSunsetUseCase
 ) : ViewModel() {
+    
+    val cities = listOf(
+        City("Ternopil", 49.5535, 25.5948, TimeZoneID.EUROPE_KIEV),
+        City("Wroclaw", 51.1079, 17.0385, TimeZoneID.EUROPE_WARSAW),
+        City("Barcelona", 41.3874, 2.1686, TimeZoneID.EUROPE_MADRID),
+        City("Chicago", 41.8781, -87.6298, TimeZoneID.AMERICA_CHICAGO)
+    )
 
-    private val _state = MutableStateFlow<UiState>(UiState.Loading)
-    val state: StateFlow<UiState> get() = _state
+    private val _selectedCity = MutableStateFlow(cities.first())
+    val selectedCity: StateFlow<City> = _selectedCity
 
-    fun fetchSunriseSunset(
-        latitude: Double? = null,
-        longitude: Double? = null,
-        date: String = "today",
-        timeZone: TimeZoneID? = null
-    ) {
+    private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
+    val uiState: StateFlow<UiState> = _uiState
+
+    init {
+        fetchSunriseSunsetData()
+    }
+
+    fun updateSelectedCity(city: City) {
+        _selectedCity.value = city
+        fetchSunriseSunsetData()
+    }
+
+    private fun fetchSunriseSunsetData() {
         viewModelScope.launch {
-            _state.value = UiState.Loading
-            Log.d("ViewModel", "State set to Loading")
+            _uiState.value = UiState.Loading
 
-            val lat = latitude ?: DEFAULT_LATITUDE
-            val lon = longitude ?: DEFAULT_LONGITUDE
-
-            val result = useCase(lat, lon, date, timeZone)
-            Log.d( "ViewModel", "result = $result")
-            result.fold(
+            val city = _selectedCity.value
+            val data = useCase(
+                city.latitude ?: DEFAULT_LATITUDE,
+                city.longitude ?: DEFAULT_LONGITUDE,
+                "today",
+                city.timeZone
+            )
+            data.fold(
                 onSuccess = {
                     Log.d("ViewModel", "State set to Success: $it")
-                    _state.value = UiState.Success(it)
+                    _uiState.value = UiState.Success(it)
                 },
                 onFailure = {
                     Log.e("ViewModel", "State set to Error: ${it.message}")
-                    _state.value = UiState.Error(it.message ?: "Unknown error")
+                    _uiState.value = UiState.Error(it.message ?: "Unknown error")
                 }
             )
         }
-    }
-
-
-    sealed class UiState {
-        object Loading : UiState()
-        data class Success(val data: SunriseSunsetTimes) : UiState()
-        data class Error(val message: String) : UiState()
     }
 }

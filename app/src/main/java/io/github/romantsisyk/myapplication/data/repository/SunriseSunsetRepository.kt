@@ -40,7 +40,13 @@ class SunriseSunsetRepository @Inject constructor(
                         sunrise = response.results.sunrise,
                         sunset = response.results.sunset,
                         solarNoon = response.results.solarNoon,
-                        dayLength = response.results.dayLength
+                        dayLength = response.results.dayLength,
+                        civilTwilightBegin = response.results.civilTwilightBegin,
+                        civilTwilightEnd = response.results.civilTwilightEnd,
+                        nauticalTwilightBegin = response.results.nauticalTwilightBegin,
+                        nauticalTwilightEnd = response.results.nauticalTwilightEnd,
+                        astronomicalTwilightBegin = response.results.astronomicalTwilightBegin,
+                        astronomicalTwilightEnd = response.results.astronomicalTwilightEnd
                     )
                     Log.d("SunriseSunsetRepository", "Parsed Result: $result")
                     Result.success(result)

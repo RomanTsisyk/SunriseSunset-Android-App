@@ -14,8 +14,13 @@ class GetSunriseSunsetUseCase(
         date: String,
         timeZone: TimeZoneID?
     ): Result<SunriseSunsetTimes> {
-        val result = repository.fetchSunriseSunsetTimes(latitude= 36.7201600, longitude = -4.4203400, date ="today", timeZone = TimeZoneID.EUROPE_LONDON)
-        Log.d("GetSunriseSunsetUseCase" , "result = $result" )
+        val result = repository.fetchSunriseSunsetTimes(
+            latitude = latitude,
+            longitude = longitude,
+            date = "today",
+            timeZone = timeZone
+        )
+        Log.d("GetSunriseSunsetUseCase", "result = $result")
         return result
     }
 }
