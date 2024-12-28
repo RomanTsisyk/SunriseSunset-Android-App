@@ -2,7 +2,16 @@ package io.github.romantsisyk.myapplication.presentation.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Card
@@ -10,24 +19,25 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import io.github.romantsisyk.common.core.generateSunData
 import io.github.romantsisyk.common.domain.model.City
 import io.github.romantsisyk.common.domain.model.SunriseSunsetTimes
-import io.github.romantsisyk.common.presentation.viewmodel.UiState
 import io.github.romantsisyk.common.presentation.viewmodel.SunriseSunsetViewModel
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
+import io.github.romantsisyk.common.presentation.viewmodel.UiState
 
 @Composable
 fun MainScreen(viewModel: SunriseSunsetViewModel) {
@@ -116,26 +126,17 @@ fun DisplaySunTimes(data: SunriseSunsetTimes) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
-//        elevation = CardDefaults.elevatedCardElevation(4.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            SunriseSunsetRow("☀️", "Sunrise", data.sunrise.formatDate())
-            SunriseSunsetRow("🌙", "Sunset", data.sunset.formatDate())
-            SunriseSunsetRow("🌞", "Solar Noon", data.solarNoon.formatDate())
-            SunriseSunsetRow("⏳", "Day Length", data.dayLength)
-            SunriseSunsetRow("🌅", "Civil Twilight Begin", data.civilTwilightBegin.formatDate())
-            SunriseSunsetRow("🌆", "Civil Twilight End", data.civilTwilightEnd.formatDate())
-            SunriseSunsetRow("🌌", "Nautical Twilight Begin", data.nauticalTwilightBegin.formatDate())
-            SunriseSunsetRow("🌉", "Nautical Twilight End", data.nauticalTwilightEnd.formatDate())
-            SunriseSunsetRow("🌠", "Astronomical Twilight Begin", data.astronomicalTwilightBegin.formatDate())
-            SunriseSunsetRow("🌌", "Astronomical Twilight End", data.astronomicalTwilightEnd.formatDate())
+            generateSunData(data).forEach { (icon, label, value) ->
+                SunriseSunsetRow(icon = icon, label = label, value = value)
+            }
         }
     }
 }
-
 
 
 @Composable
@@ -152,16 +153,6 @@ fun SunriseSunsetRow(icon: String, label: String, value: String) {
     }
 }
 
-@ExperimentalMaterial3Api
-@Composable
-fun AppHeader() {
-    TopAppBar(
-        title = { Text("Sunrise-Sunset App") },
-//        backgroundColor = MaterialTheme.colorScheme.primary,
-//        contentColor = Color.White,
-//        elevation = 4.dp
-    )
-}
 
 @Composable
 fun BackgroundGradient(content: @Composable () -> Unit) {
@@ -204,14 +195,3 @@ fun Footer() {
         )
     }
 }
-
-
-fun String.formatDate(): String {
-    return try {
-        val parsedDate = ZonedDateTime.parse(this)
-        parsedDate.format(DateTimeFormatter.ofPattern("hh:mm a", Locale.getDefault()))
-    } catch (e: Exception) {
-        this // Fallback to raw string if parsing fails
-    }
-}
-
