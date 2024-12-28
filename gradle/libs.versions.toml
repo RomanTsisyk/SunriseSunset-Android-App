@@ -1,5 +1,7 @@
 [versions]
 agp = "8.5.2"
+androidxComposeMaterial = "1.4.0"
+composeFoundationVersion = "1.4.0"
 composeMaterialVersion = "1.2.0"
 hiltAndroid = "2.52"
 hiltAndroidCompiler = "2.51.1"
@@ -27,13 +29,20 @@ tiles = "1.1.0"
 tilesMaterial = "1.1.0"
 horologistComposeTools = "0.4.8"
 horologistTiles = "0.4.8"
+tilesVersion = "1.4.1"
+watchfaceComplicationsDataSource = "1.2.1"
 watchfaceComplicationsDataSourceKtx = "1.1.1"
 
 [libraries]
+androidx-compose-foundation-v140 = { module = "androidx.wear.compose:compose-foundation", version.ref = "composeFoundationVersion" }
 androidx-compose-material-v120 = { module = "androidx.wear.compose:compose-material", version.ref = "composeMaterialVersion" }
+androidx-compose-material-v140 = { module = "androidx.wear.compose:compose-material", version.ref = "androidxComposeMaterial" }
+androidx-compose-navigation = { module = "androidx.wear.compose:compose-navigation", version.ref = "androidxComposeMaterial" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-lifecycle-runtime-ktx-v260 = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtxVersion" }
+androidx-tiles-v141 = { module = "androidx.wear.tiles:tiles", version.ref = "tilesVersion" }
+androidx-watchface-complications-data-source = { module = "androidx.wear.watchface:watchface-complications-data-source", version.ref = "watchfaceComplicationsDataSource" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroidCompiler" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
 hilt-android-v252 = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
