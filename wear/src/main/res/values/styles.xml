@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="MainActivityTheme.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@android:color/black</item>
+        <item name="windowSplashScreenAnimatedIcon">@null</item>
+        <item name="postSplashScreenTheme">@android:style/Theme.DeviceDefault</item>
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+</resources>
